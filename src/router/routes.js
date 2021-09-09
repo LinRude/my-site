@@ -3,7 +3,7 @@ import About from '@/views/About';
 import Blog from '@/views/Blog';
 import Project from '@/views/Project';
 import Message from '@/views/Message';
-
+import BlogDetail from '@/views/Blog/Detail';
 export default [
     {
         name: 'Home', path: '/', component: Home
@@ -13,6 +13,13 @@ export default [
     },
     {
         name: 'Blog', path: '/article', component: Blog
+    },
+    // 动态路由
+    {
+        name:'CategoryBlog',path:'/article/cate/:categoryId',component:Blog
+    },
+    {
+        name:'BlogDetail',path:'/article/:id', component : BlogDetail
     },
     {
         name: 'Project', path: '/project', component: Project

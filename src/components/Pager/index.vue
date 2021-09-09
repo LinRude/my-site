@@ -4,12 +4,26 @@
     <a @click="handleClick(1)" :class="{ disabled: current === 1 }"
       >|&lt;&lt;</a
     >
-    <a @click="handleClick(current - 1)" :class="{ disabled: current === 1 }">&lt;&lt;</a>
-    <a @click="handleClick(n)" v-for="(n, i) in numbers" :key="i" :class="{ active: n === current }">{{
-      n
-    }}</a>
-    <a @click="handleClick(current + 1)" :class="{ disabled: current === PageNumber }">&gt;&gt;</a>
-    <a @click="handleClick(PageNumber)" :class="{ disabled: current === PageNumber }">&gt;&gt;|</a>
+    <a @click="handleClick(current - 1)" :class="{ disabled: current === 1 }"
+      >&lt;&lt;</a
+    >
+    <a
+      @click="handleClick(n)"
+      v-for="(n, i) in numbers"
+      :key="i"
+      :class="{ active: n === current }"
+      >{{ n }}</a
+    >
+    <a
+      @click="handleClick(current + 1)"
+      :class="{ disabled: current === PageNumber }"
+      >&gt;&gt;</a
+    >
+    <a
+      @click="handleClick(PageNumber)"
+      :class="{ disabled: current === PageNumber }"
+      >&gt;&gt;|</a
+    >
   </div>
 </template>
 
@@ -65,7 +79,16 @@ export default {
   },
   methods: {
     handleClick(newPage) {
-      console.log("点击");
+      // console.log("点击");
+      if (newPage < 1) {
+        newPage = 1;
+      }
+      if (newPage > this.pageNumber) {
+        newPage = this.pageNumber;
+      }
+      if (newPage === this.current) {
+        return;
+      }
       // 抛出一个事件
       this.$emit("pageChange", newPage);
     },
